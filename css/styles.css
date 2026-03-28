@@ -1,0 +1,281 @@
+/* ============================================================
+   STYLES — Hoey Art & Love
+   ============================================================ */
+
+@import url('./theme.css');
+
+/* ── Reset ──────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Base ────────────────────────────────────────────────── */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+header {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md) var(--space-xl);
+  background: linear-gradient(135deg, var(--color-purple-light) 0%, var(--color-white) 100%);
+  border-bottom: 2px solid var(--color-border);
+}
+
+header h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  color: var(--color-purple-dark);
+  letter-spacing: 0.02em;
+}
+
+.tagline {
+  margin-top: var(--space-sm);
+  font-size: var(--text-lg);
+  color: var(--color-green-dark);
+  font-style: italic;
+}
+
+/* ── Nav / Filter ────────────────────────────────────────── */
+nav[aria-label="Gallery filter"] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-md);
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-lg);
+  border: 2px solid var(--color-purple);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-white);
+  color: var(--color-purple-dark);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.filter-btn:hover,
+.filter-btn:focus-visible {
+  background-color: var(--color-purple-light);
+  box-shadow: 0 0 0 3px var(--color-purple);
+  outline: none;
+}
+
+.filter-btn.active,
+.filter-btn[aria-pressed="true"] {
+  background-color: var(--color-purple-dark);
+  color: var(--color-white);
+  border-color: var(--color-purple-dark);
+}
+
+/* ── Quotes ──────────────────────────────────────────────── */
+#quotes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: var(--space-xl) var(--space-md);
+  background-color: var(--color-purple-light);
+}
+
+#quotes blockquote {
+  position: relative;
+  max-width: 300px;
+  background-color: var(--color-white);
+  border-left: 4px solid var(--color-green);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg) var(--space-lg) var(--space-md);
+  box-shadow: var(--shadow-card);
+}
+
+#quotes blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.2rem;
+  left: var(--space-md);
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: var(--color-purple);
+  line-height: 1;
+  pointer-events: none;
+}
+
+#quotes blockquote p {
+  font-style: italic;
+  font-size: var(--text-base);
+  color: var(--color-text);
+  padding-top: var(--space-lg);
+}
+
+#quotes blockquote footer {
+  margin-top: var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-purple-dark);
+}
+
+/* ── Gallery ─────────────────────────────────────────────── */
+#gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+  gap: var(--space-md);
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1400px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+/* ── Gallery Card ────────────────────────────────────────── */
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  cursor: pointer;
+}
+
+.gallery-card:hover,
+.gallery-card:focus-within {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+
+.gallery-card figure {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gallery-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.gallery-card figcaption {
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.gallery-card figcaption h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  color: var(--color-purple-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.gallery-card figcaption p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Hidden state (applied by JS filter) */
+.gallery-card[hidden] {
+  display: none;
+}
+
+/* ── Lightbox ────────────────────────────────────────────── */
+#lightbox {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  background: transparent;
+  max-width: min(90vw, 900px);
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#lightbox::backdrop {
+  background: rgba(61, 43, 86, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+#lightbox-img {
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+}
+
+#lightbox-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background-color: var(--color-purple-dark);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-pill);
+  width: 2rem;
+  height: 2rem;
+  font-size: var(--text-lg);
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+  z-index: 1;
+}
+
+#lightbox-close:hover,
+#lightbox-close:focus-visible {
+  background-color: var(--color-purple);
+  outline: none;
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+footer {
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-white);
+}
+
+/* ── Responsive tweaks ───────────────────────────────────── */
+@media (max-width: 400px) {
+  header h1 {
+    font-size: var(--text-2xl);
+  }
+
+  #quotes blockquote {
+    max-width: 100%;
+  }
+}
